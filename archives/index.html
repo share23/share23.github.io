@@ -79,17 +79,16 @@
 
 
 
-<meta name="description" content="大数据初学者，不长肉的吃货">
-<meta name="keywords" content="Hadoop">
+<meta name="description" content="不长肉的吃货">
 <meta property="og:type" content="website">
 <meta property="og:title" content="share23的博客">
 <meta property="og:url" content="http://yoursite.com/archives/index.html">
 <meta property="og:site_name" content="share23的博客">
-<meta property="og:description" content="大数据初学者，不长肉的吃货">
+<meta property="og:description" content="不长肉的吃货">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="share23的博客">
-<meta name="twitter:description" content="大数据初学者，不长肉的吃货">
+<meta name="twitter:description" content="不长肉的吃货">
 
 
 
@@ -360,7 +359,7 @@
                 alt="share23" />
             
               <p class="site-author-name" itemprop="name">share23</p>
-              <p class="site-description motion-element" itemprop="description">大数据初学者，不长肉的吃货</p>
+              <p class="site-description motion-element" itemprop="description">不长肉的吃货</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -600,4 +599,33 @@
   
 
 </body>
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
 </html>
