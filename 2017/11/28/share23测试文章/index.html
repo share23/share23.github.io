@@ -508,12 +508,17 @@
     var todaySecond = today.getSeconds();
     var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
     var diff = now - birthDay;
-    var diffYears = Math.floor(diff/years);
-    var diffDays = Math.floor((diff/days)-diffYears*365);
-    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
-    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
-    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
-      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    //var diffYears = Math.floor(diff/years);
+    //var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffDays = Math.floor(diff/days);
+    //var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffHours = Math.floor((diff-diffDays*days)/hours);
+    //var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffMinutes = Math.floor((diff-diffDays*days-diffHours*hours)/minutes);
+    //var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+    var diffSeconds = Math.floor((diff-diffDays*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      //document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
   }, 1000);
 </script>
         
