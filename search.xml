@@ -4,6 +4,9 @@
     <title><![CDATA[share23测试文章]]></title>
     <url>%2F2017%2F11%2F28%2Fshare23%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0%2F</url>
     <content type="text"><![CDATA[这是share23的一片测试文章，很高兴开始了第一步！]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
