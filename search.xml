@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[share23测试文章]]></title>
+    <title><![CDATA[share]]></title>
     <url>%2Ftpt%2Fpt%2F</url>
-    <content type="text"><![CDATA[加密码的测试]]></content>
+    <content type="text"><![CDATA[加密码的测试 123]]></content>
       <categories>
         <category>tpt</category>
       </categories>
       <tags>
-        <tag>pt,nice</tag>
+        <tag>pt</tag>
+        <tag>nice</tag>
       </tags>
   </entry>
   <entry>
