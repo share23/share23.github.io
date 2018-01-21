@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Different between equals and ==]]></title>
     <url>%2FJava%2FDifferent-between-equals-and%2F</url>
-    <content type="text"><![CDATA[![]{http://upload-images.jianshu.io/upload_images/10228133-65811fb45d2ea89d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240} equals : 判断逻辑上值是否相等== : 判断内存引用是否相等 Demo 已完成 未完成]]></content>
+    <content type="text"><![CDATA[equals :&nbsp;&nbsp;&nbsp;判断逻辑上值是否相等== :&nbsp;&nbsp;&nbsp;判断内存引用是否相等 Demo]]></content>
       <categories>
         <category>Java</category>
       </categories>
