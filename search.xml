@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[在VirtualBox中为CentOS7mini配置双网卡]]></title>
+    <url>%2FLinux%2F%E5%9C%A8VirtualBox%E4%B8%AD%E4%B8%BACentOS7mini%E9%85%8D%E7%BD%AE%E5%8F%8C%E7%BD%91%E5%8D%A1%2F</url>
+    <content type="text"><![CDATA[配置过程需求分析要同时满足虚拟机访问互联网和远程连接，需要配置两块网卡。 一块为 NAT 网络，这块用来访问互联网。 另一块为 Host-Only 网络，进行远程连接。 注意事项在 Virtualbox 中配置双网卡一定要先只开一个，等配好一个再配下一个，不然第二个不识别。 在全局设定里配置 NAT 网络、 Host-Only 网络 在新建虚拟机时选择网卡(NAT) 配置第一块网卡123456vi /etc/sysconfig/network-scripts/ifcfg-enp0s3改动 ONBOOT=yes重启网卡 service network restart测试能否访问外网 ping –c 4 baidu.com 给 CentOS7mini 装一些常用的指令CentOS7mini 中缺少 vim， wget， curl， lsof， ifconfig之类的指令，需要自己单独安装。执行： 1yum -y install nano vim wget curl net-tools lsof 如果提示出错执行 yum makecache 重建缓存即可 配置第二块网卡关机后添加 Host-Only 网卡，开机复制网卡文件后进行相关配置。 进入网卡文件夹的目录 /etc/sysconfig/network-scripts 后输入 cp ifcfg-enp0s3 ifcfg- enp0s8 ，通过 ls 查看是否添加上了对 ifcfg- enp0s8 作出如下修改： 123456BOOTPROTO=staticNAME=enp0s8DEVICE=enp0s8ONBOOT=yesIPADDR=192.168.10.10NETMASK=255.255.255.0 配置好之后重启网卡，ping 192.168.10.10 验证 Host-Only 网卡的有效性。 至此，在 CentOS7mini 中配置双网卡就完成了，可以根据这个配置作为别的操作的基础。]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Virtualbox</tag>
+        <tag>CentOS</tag>
+        <tag>双网卡</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Different between equals and ==]]></title>
     <url>%2FJava%2FDifferent-between-equals-and%2F</url>
     <content type="text"><![CDATA[equals :&nbsp;&nbsp;&nbsp;判断逻辑上值是否相等== :&nbsp;&nbsp;&nbsp;判断内存引用是否相等 Demo]]></content>
