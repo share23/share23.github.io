@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[CentOS6在VirtualBox中的网络配置及克隆]]></title>
+    <title><![CDATA[CentOS6 在 VirtualBox 中的网络配置及克隆]]></title>
     <url>%2FLinux%2FCentOS6%E5%9C%A8VirtualBox%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%8B%E9%9A%86%2F</url>
     <content type="text"><![CDATA[前言与 VMware 相比， VirtualBox 安装命令行版的 Linux 操作系统占系统内存会相对较小。 网络配置NAT 模式下自动联网对于 CentOS 来说，配置网卡是一个比较重要的内容。 首先在新建虚拟机的时候我们给网卡配置成 NAT 模式； 登陆之后在命令行下输入 ifconfig 查看网卡的信息； 然后 ping 网关、baidu 等等，确保网络的畅通； 以上是采用 DHCP 获得的 ip 配置静态 IP将 DHCP 自动获取 ip 设置成静态 ip 1vi /etc/sysconfig/network-scripts/ifcfg-eth0 (PS:&nbsp;&nbsp;&nbsp;不同版本的CentOS的网卡名可能存在差异，以实际为主) 设置 ONBOOT=yes 将 dhcp 改为 static 依次添加 ip 地址、子网掩码、网关 123IPADDR=NETMASK=GATEWAY= (PS:&nbsp;&nbsp;&nbsp;以上 IP 设置自己根据外部网络适配器自己指定) 重启网卡1service network restart 测试网络是否畅通 配置 DNS 服务123vi /etc/resolv.confnameserver 8.8.8.8 (PS:&nbsp;&nbsp;&nbsp;nameserver 的地址根据实际情况改动) 以上完成了 CentOS6 网卡的配置 CentOS虚拟机克隆思路 在克隆CentOS虚拟机后发现网卡不显示，创建的是完整克隆，主机名和物理地址都一样，这里的想法是克隆出除 ip 地址、物理地址、主机名不一样其他都一样的虚拟机。 克隆根据需求创建链接克隆或完整克隆，这里采用的是完整克隆。 重新分配物理地址删除 /etc/sysconfig/network-scripts/ifcfg-eth0 文件中的物理地址 1删除两行： UUID 和物理地址 删除文件/etc/udev/rules.d/70-persistent-net.rules 1rm -rf /etc/udev/rules.d/70-persistent-net.rules 修改主机名1vi /etc/sysconfig/network 重启 Linux1init 6 修改hosts12vi /etc/hosts 文件。在文件最后增加一行 ：IP 地址 主机名 以上完成了对虚拟机的有效克隆]]></content>
       <categories>
@@ -14,7 +14,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[在VirtualBox中为CentOS7mini配置双网卡]]></title>
+    <title><![CDATA[在 VirtualBox 中为 CentOS7mini 配置双网卡]]></title>
     <url>%2FLinux%2F%E5%9C%A8VirtualBox%E4%B8%AD%E4%B8%BACentOS7mini%E9%85%8D%E7%BD%AE%E5%8F%8C%E7%BD%91%E5%8D%A1%2F</url>
     <content type="text"><![CDATA[配置过程需求分析要同时满足虚拟机访问互联网和远程连接，需要配置两块网卡。 一块为 NAT 网络，这块用来访问互联网。 另一块为 Host-Only 网络，进行远程连接。 注意事项在 Virtualbox 中配置双网卡一定要先只开一个，等配好一个再配下一个，不然第二个不识别。 在全局设定里配置 NAT 网络、 Host-Only 网络 在新建虚拟机时选择网卡(NAT) 配置第一块网卡123456vi /etc/sysconfig/network-scripts/ifcfg-enp0s3改动 ONBOOT=yes重启网卡 service network restart测试能否访问外网 ping –c 4 baidu.com 给 CentOS7mini 装一些常用的指令CentOS7mini 中缺少 vim， wget， curl， lsof， ifconfig之类的指令，需要自己单独安装。执行： 1yum -y install nano vim wget curl net-tools lsof 如果提示出错执行 yum makecache 重建缓存即可 配置第二块网卡关机后添加 Host-Only 网卡，开机复制网卡文件后进行相关配置。 进入网卡文件夹的目录 /etc/sysconfig/network-scripts 后输入 cp ifcfg-enp0s3 ifcfg- enp0s8 ，通过 ls 查看是否添加上了对 ifcfg- enp0s8 作出如下修改： 123456BOOTPROTO=staticNAME=enp0s8DEVICE=enp0s8ONBOOT=yesIPADDR=192.168.10.10NETMASK=255.255.255.0 配置好之后重启网卡，ping 192.168.10.10 验证 Host-Only 网卡的有效性。 至此，在 CentOS7mini 中配置双网卡就完成了，可以根据这个配置作为别的操作的基础。]]></content>
       <categories>
