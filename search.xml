@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CentOS7 在 VirtualBox 中的克隆]]></title>
+    <url>%2FLinux%2FCentOS7-%E5%9C%A8-VirtualBox-%E4%B8%AD%E7%9A%84%E5%85%8B%E9%9A%86%2F</url>
+    <content type="text"><![CDATA[前言克隆 CentOS6 和克隆 CentOS7 过程大致相同，有些细节不一样。 思路 在克隆CentOS虚拟机后发现网卡不显示，创建的是完整克隆，主机名和物理地址都一样，这里的想法是克隆出除 ip 地址、物理地址、主机名不一样其他都一样的虚拟机。 克隆根据需求创建链接克隆或完整克隆，这里采用的是完整克隆。 重新分配物理地址删除 /etc/sysconfig/network-scripts/ifcfg-enp0s3 文件中的物理地址 删除 /etc/sysconfig/network-scripts/ifcfg-enp0s8 文件中的物理地址 1删除两行：UUID和物理地址 删除文件 /etc/udev/rules.d/70-persistent-ipoib.rules 1rm -rf /etc/udev/rules.d/70-persistent-ipoib.rules 修改 ifcfg-enp0s8 文件中的 ip这块网卡设置的是静态 ip，用来远程连接，过程略。 修改主机名CentOS7 修改主机名不同于 CentOS6 用 hostnamectl 命令查看或修改与主机名相关的配置，以下两个主机名设置一致。 123hostnamectl --static set-hostname [主机名]hostnamectl set-hostname [主机名] 手动更新/etc/hosts在文件最后增加一行:1IP 地址 主机名 重启linux重启启动 linux: 1init 6 测试进行内外网是否连通的测试 123ping -c 4 baidu.comping -c 4 192.168.10.x 以上完成了对虚拟机的有效克隆。]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>克隆</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CentOS6 在 VirtualBox 中的网络配置及克隆]]></title>
     <url>%2FLinux%2FCentOS6%E5%9C%A8VirtualBox%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%8B%E9%9A%86%2F</url>
     <content type="text"><![CDATA[前言与 VMware 相比， VirtualBox 安装命令行版的 Linux 操作系统占系统内存会相对较小。 网络配置NAT 模式下自动联网对于 CentOS 来说，配置网卡是一个比较重要的内容。 首先在新建虚拟机的时候我们给网卡配置成 NAT 模式； 登陆之后在命令行下输入 ifconfig 查看网卡的信息； 然后 ping 网关、baidu 等等，确保网络的畅通； 以上是采用 DHCP 获得的 ip 配置静态 IP将 DHCP 自动获取 ip 设置成静态 ip 1vi /etc/sysconfig/network-scripts/ifcfg-eth0 (PS:&nbsp;&nbsp;&nbsp;不同版本的CentOS的网卡名可能存在差异，以实际为主) 设置 ONBOOT=yes 将 dhcp 改为 static 依次添加 ip 地址、子网掩码、网关 123IPADDR=NETMASK=GATEWAY= (PS:&nbsp;&nbsp;&nbsp;以上 IP 设置自己根据外部网络适配器自己指定) 重启网卡1service network restart 测试网络是否畅通 配置 DNS 服务123vi /etc/resolv.confnameserver 8.8.8.8 (PS:&nbsp;&nbsp;&nbsp;nameserver 的地址根据实际情况改动) 以上完成了 CentOS6 网卡的配置 CentOS虚拟机克隆思路 在克隆CentOS虚拟机后发现网卡不显示，创建的是完整克隆，主机名和物理地址都一样，这里的想法是克隆出除 ip 地址、物理地址、主机名不一样其他都一样的虚拟机。 克隆根据需求创建链接克隆或完整克隆，这里采用的是完整克隆。 重新分配物理地址删除 /etc/sysconfig/network-scripts/ifcfg-eth0 文件中的物理地址 1删除两行： UUID 和物理地址 删除文件/etc/udev/rules.d/70-persistent-net.rules 1rm -rf /etc/udev/rules.d/70-persistent-net.rules 修改主机名1vi /etc/sysconfig/network 重启 Linux1init 6 修改hosts12vi /etc/hosts 文件。在文件最后增加一行 ：IP 地址 主机名 以上完成了对虚拟机的有效克隆]]></content>
@@ -9,8 +21,8 @@
       </categories>
       <tags>
         <tag>CentOS</tag>
-        <tag>网络配置</tag>
         <tag>克隆</tag>
+        <tag>网络配置</tag>
       </tags>
   </entry>
   <entry>
