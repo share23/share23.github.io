@@ -74,14 +74,14 @@
   <entry>
     <title><![CDATA[CentOS6 在 VirtualBox 中的网络配置及克隆]]></title>
     <url>%2FLinux%2FCentOS6%E5%9C%A8VirtualBox%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%85%8B%E9%9A%86%2F</url>
-    <content type="text"><![CDATA[前言与 VMware 相比， VirtualBox 安装命令行版的 Linux 操作系统占系统内存会相对较小。 网络配置NAT 模式下自动联网对于 CentOS 来说，配置网卡是一个比较重要的内容。 首先在新建虚拟机的时候我们给网卡配置成 NAT 模式； 登陆之后在命令行下输入 ifconfig 查看网卡的信息； 然后 ping 网关、baidu 等等，确保网络的畅通； 以上是采用 DHCP 获得的 ip 配置静态 IP将 DHCP 自动获取 ip 设置成静态 ip 1vi /etc/sysconfig/network-scripts/ifcfg-eth0 (PS:&nbsp;&nbsp;&nbsp;不同版本的CentOS的网卡名可能存在差异，以实际为主) 设置 ONBOOT=yes 将 dhcp 改为 static 依次添加 ip 地址、子网掩码、网关 123IPADDR=NETMASK=GATEWAY= (PS:&nbsp;&nbsp;&nbsp;以上 IP 设置自己根据外部网络适配器自己指定) 重启网卡1service network restart 测试网络是否畅通 配置 DNS 服务123vi /etc/resolv.confnameserver 8.8.8.8 (PS:&nbsp;&nbsp;&nbsp;nameserver 的地址根据实际情况改动) 以上完成了 CentOS6 网卡的配置 CentOS虚拟机克隆思路 在克隆CentOS虚拟机后发现网卡不显示，创建的是完整克隆，主机名和物理地址都一样，这里的想法是克隆出除 ip 地址、物理地址、主机名不一样其他都一样的虚拟机。 克隆根据需求创建链接克隆或完整克隆，这里采用的是完整克隆。 重新分配物理地址删除 /etc/sysconfig/network-scripts/ifcfg-eth0 文件中的物理地址 1删除两行： UUID 和物理地址 删除文件/etc/udev/rules.d/70-persistent-net.rules 1rm -rf /etc/udev/rules.d/70-persistent-net.rules 修改主机名1vi /etc/sysconfig/network 重启 Linux1init 6 修改hosts12vi /etc/hosts 文件。在文件最后增加一行 ：IP 地址 主机名 以上完成了对虚拟机的有效克隆]]></content>
+    <content type="text"><![CDATA[前言与 VMware 相比， VirtualBox 安装命令行版的 Linux 操作系统占系统内存会相对较小。 网络配置NAT 模式下自动联网对于 CentOS 来说，配置网卡是一个比较重要的内容。 首先在新建虚拟机的时候我们给网卡配置成 NAT 模式； 登陆之后在命令行下输入 ifconfig 查看网卡的信息； 然后 ping 网关、baidu 等等，确保网络的畅通； 以上是采用 DHCP 获得的 ip 配置静态 IP将 DHCP 自动获取 ip 设置成静态 ip 1vi /etc/sysconfig/network-scripts/ifcfg-eth0 (PS:&nbsp;&nbsp;&nbsp;不同版本的CentOS的网卡名可能存在差异，以实际为主) 设置 ONBOOT=yes 将 dhcp 改为 static 依次添加 ip 地址、子网掩码、网关 123IPADDR=NETMASK=GATEWAY= (PS:&nbsp;&nbsp;&nbsp;以上 IP 设置自己根据外部网络适配器自己指定) 重启网卡1service network restart 测试网络是否畅通 配置 DNS 服务123vi /etc/resolv.confnameserver 8.8.8.8 (PS:&nbsp;&nbsp;&nbsp;nameserver 的地址根据实际情况改动) 以上完成了 CentOS6 网卡的配置 CentOS虚拟机克隆思路 在克隆 CentOS 虚拟机后发现网卡不显示，创建的是完整克隆，主机名和物理地址都一样，这里的想法是克隆出除 ip 地址、物理地址、主机名不一样其他都一样的虚拟机。 克隆根据需求创建链接克隆或完整克隆，这里采用的是完整克隆。 重新分配物理地址删除 /etc/sysconfig/network-scripts/ifcfg-eth0 文件中的物理地址 1删除两行： UUID 和物理地址 删除文件 /etc/udev/rules.d/70-persistent-net.rules 1rm -rf /etc/udev/rules.d/70-persistent-net.rules 修改主机名1vi /etc/sysconfig/network 重启 Linux1init 6 修改 hosts12vi /etc/hosts 文件。在文件最后增加一行 ：IP 地址 主机名 以上完成了对虚拟机的有效克隆]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
         <tag>CentOS</tag>
-        <tag>克隆</tag>
         <tag>网络配置</tag>
+        <tag>克隆</tag>
       </tags>
   </entry>
   <entry>
@@ -111,7 +111,7 @@
   <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F%E9%9A%8F%E7%AC%94%2FHello-World%2F</url>
-    <content type="text"><![CDATA[这是一个基于 Hexo + Github Pages + NexT 搭建的静态博客。 在整个过程中遇到过许多问题，从最开始的搭建到后期的主题优化，用 “ 折腾 ” 二字来总结恰好合适。 现在网站外观基本上满足了我的需求，算是一个一般的皮囊吧，我更想让他有一个有趣的灵魂。 事件经过起源源于我对未知事物的好奇心，很久之前的某天在知乎上看到了一篇文章，萌生了搭建个人博客的想法，于是我开始按照他的教程开始了搭建，由于当时水平有限，一开始的尝试并未成功，尝试几次后也就搁置了，当我成功按这个方法搭建好的时候我已经在另一个平台成功搭建了自己的个人博客。 后来看了另一篇文章腾讯云的 1001 种玩法在云主机中搭建博客，注册了域名，租了云主机，基于LNMP+WordPress搭建了自己的个人博客，在上面做了一些笔记和更新了一些教程，在这个过程中学到了不少东西，关键是对整个过程有了一些概念为现在本站的搭建有了一些积极的作用。 因为原来的云主机有别的用途，所以根据网上的教程优化了主题，准备将原来的博客我认为有价值的博文迁移过来，在本站继续写。 最初的想法最初的想法很简单，在个人博客记录学习笔记，然后分享给有需要的人，最好是能产生一些沟通交流，还有就是总结我遇到的问题和解决方法。可能是博客的推广工作和搜索优化做的不到位的原因，最初的博客没有太大的访问量，评论更是寥寥无几。现在的想法是完善之前的不足，写出有价值的文章。 搭建及优化的过程搭建基于 Hexo + Github Pages + NexT 的静态博客主要参照的是 教你免费搭建个人博客，Hexo&amp;Github NexT主题优化主要参照的是 打造个性超赞博客Hexo+NexT+GithubPages的超深度优化 (包含怎么用Markdown写文章) / Hexo 折腾记 / Hexo+Next主题优化 遇到问题的解决方法遇到问题要善于运用搜索引擎，想清楚用什么关键词描述你的问题。 提问之前先看看 提问的智慧]]></content>
+    <content type="text"><![CDATA[这是一个基于 Hexo + Github Pages + NexT 搭建的静态博客。 在整个过程中遇到过许多问题，从最开始的搭建到后期的主题优化，用 “ 折腾 ” 二字来总结恰好合适。 现在网站外观基本上满足了我的需求，算是一个一般的皮囊吧，我更想让他有一个有趣的灵魂。 事件经过起源源于我对未知事物的好奇心，很久之前的某天在知乎上看到了一篇文章，萌生了搭建个人博客的想法，于是我开始按照他的教程开始了搭建，由于当时水平有限，一开始的尝试并未成功，尝试几次后也就搁置了，当我成功按这个方法搭建好的时候我已经在另一个平台成功搭建了自己的个人博客。 后来看了另一篇文章腾讯云的 1001 种玩法在云主机中搭建博客，注册了域名，租了云主机，基于 LNMP+WordPress 搭建了自己的个人博客，在上面做了一些笔记和更新了一些教程，在这个过程中学到了不少东西，关键是对整个过程有了一些概念为现在本站的搭建有了一些积极的作用。 因为原来的云主机有别的用途，所以根据网上的教程优化了主题，准备将原来的博客我认为有价值的博文迁移过来，在本站继续写。 最初的想法最初的想法很简单，在个人博客记录学习笔记，然后分享给有需要的人，最好是能产生一些沟通交流，还有就是总结我遇到的问题和解决方法。可能是博客的推广工作和搜索优化做的不到位的原因，最初的博客没有太大的访问量，评论更是寥寥无几。现在的想法是完善之前的不足，写出有价值的文章。 搭建及优化的过程搭建基于 Hexo + Github Pages + NexT 的静态博客主要参照的是 教你免费搭建个人博客，Hexo&amp;Github NexT主题优化主要参照的是 打造个性超赞博客Hexo+NexT+GithubPages的超深度优化 (包含怎么用Markdown写文章) / Hexo 折腾记 / Hexo+Next主题优化 遇到问题的解决方法遇到问题要善于运用搜索引擎，想清楚用什么关键词描述你的问题。 提问之前先看看 提问的智慧]]></content>
       <categories>
         <category>随笔</category>
       </categories>
