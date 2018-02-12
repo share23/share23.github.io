@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[基于 CentOS7.2 环境编译 Spark-2.2.0 源码]]></title>
+    <url>%2FSpark%2F%E5%9F%BA%E4%BA%8E-CentOS7-2-%E7%8E%AF%E5%A2%83%E7%BC%96%E8%AF%91-Spark-2-2-0-%E6%BA%90%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[编译 Spark-2.2.0 源码参考 基于CentOS6.4环境编译Spark-2.1.0源码 需求分析根据 Spark 官方文档编译模块的介绍如下： 1The Maven-based build is the build of reference for Apache Spark. Building Spark using Maven requires Maven 3.3.9 or newer and Java 8+. Note that support for Java 7 was removed as of Spark 2.2.0. 得出编译 Spark-2.2.0 需要 Maven 3.3.9 和 Java 8+ 前期准备 Java8 的安装 Maven3.3.9 的安装 Spark-2.2.0 源码下载Spark 下载地址 解压将下载好的 spark-2.2.0.tgz 通过 Xftp 传输到 /abs/software 目录 解压 spark-2.2.0.tgz 123# 将Spark源码包解压到/abs/app/中tar -zxvf spark-2.2.0.tgz -C /abs/app/ 解压后的目录机构如下所示： 编译查看 Spark 官方文档编译源码部分 我们可以使用 Spark 源码目录中的 dev 下的 make-distribution.sh 脚本，官方提供的编译命令如下： 1./dev/make-distribution.sh --name custom-spark --pip --r --tgz -Psparkr -Phadoop-2.7 -Phive -Phive-thriftserver -Pmesos -Pyarn 可以根据具体的条件来编译 Spark，比如我们使用的 Hadoop 版本是 2.6.0-cdh5.7.0，并且我们需要将 Spark 运行在 YARN 上、支持对 Hive 的操作，那么我们的 Spark 源码编译脚本就是： 1./dev/make-distribution.sh --name 2.6.0-cdh5.7.0 --tgz -Pyarn -Phadoop-2.6 -Phive -Phive-thriftserver -Dhadoop.version=2.6.0-cdh5.7.0]]></content>
+      <categories>
+        <category>Spark</category>
+      </categories>
+      <tags>
+        <tag>编译</tag>
+        <tag>spark</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Maven3.3.9 的安装]]></title>
     <url>%2FJava%2FMaven3-3-9-%E7%9A%84%E5%AE%89%E8%A3%85%2F</url>
-    <content type="text"><![CDATA[Maven3.3.9 在 CentOS7 中的安装与配置下载与解压 Maven 安装包Maven3.3.9安装包下载地址 下载 apache-maven-3.3.9-bin.tar.gz 用 Xftp 将本地下载好的 JDK 包传输到 /abs/software 目录 解压到指定目录 123# 将Maven解压到/abs/app/中tar -zxvf apache-maven-3.3.9-bin.tar.gz -C /abs/app/ 配置 Maven 环境变量将 Maven 目录添加到系统环境变量(~/.bash_profile)中 1234vi ~/.bash_profileexport MAVEN_HOME=/abs/app/apache-maven-3.3.9export PATH=$MAVEN_HOME/bin:$PATH 让配置生效 1source ~/.bash_profile 在命令行中输入 mvn -v 验证，出现以下内容说明安装配置成功。 123456Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)Maven home: /abs/app/apache-maven-3.3.9Java version: 1.8.0_161, vendor: Oracle CorporationJava home: /abs/app/jdk1.8.0_161/jreDefault locale: en_US, platform encoding: UTF-8OS name: "linux", version: "3.10.0-327.el7.x86_64", arch: "amd64", family: "unix"]]></content>
+    <content type="text"><![CDATA[Maven3.3.9 在 CentOS7 中的安装与配置下载与解压 Maven 安装包Maven3.3.9 安装包下载地址 下载 apache-maven-3.3.9-bin.tar.gz 用 Xftp 将本地下载好的 JDK 包传输到 /abs/software 目录 解压到指定目录 123# 将Maven解压到/abs/app/中tar -zxvf apache-maven-3.3.9-bin.tar.gz -C /abs/app/ 配置 Maven 环境变量将 Maven 目录添加到系统环境变量(~/.bash_profile)中 1234vi ~/.bash_profileexport MAVEN_HOME=/abs/app/apache-maven-3.3.9export PATH=$MAVEN_HOME/bin:$PATH 让配置生效 1source ~/.bash_profile 在命令行中输入 mvn -v 验证，出现以下内容说明安装配置成功。 123456Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)Maven home: /abs/app/apache-maven-3.3.9Java version: 1.8.0_161, vendor: Oracle CorporationJava home: /abs/app/jdk1.8.0_161/jreDefault locale: en_US, platform encoding: UTF-8OS name: "linux", version: "3.10.0-327.el7.x86_64", arch: "amd64", family: "unix"]]></content>
       <categories>
         <category>Java</category>
       </categories>
@@ -68,8 +80,8 @@
       </categories>
       <tags>
         <tag>CentOS</tag>
-        <tag>网络配置</tag>
         <tag>克隆</tag>
+        <tag>网络配置</tag>
       </tags>
   </entry>
   <entry>
