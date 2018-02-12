@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java8 的安装]]></title>
+    <url>%2FJava%2FJava8-%E7%9A%84%E5%AE%89%E8%A3%85%2F</url>
+    <content type="text"><![CDATA[在 Oracle 官网下载 JDK 在 Linux 下的安装包 jdk-8u161-linux-x64.tar.gz 在根目录下创建 app 目录，用 Xftp 将本地下载好的 JDK 包传输到 app 目录 解压到指定目录 123# 将JDK解压到/abs/app/中tar -zxvf jdk-8u161-linux-x64.tar.gz -C /abs/app/ 配置 Java 环境变量将JDK目录添加到系统环境变量(~/.bash_profile)中 1234vi ~/.bash_profileexport JAVA_HOME=/abs/app/jdk1.8.0_161export PATH=$JAVA_HOME/bin:$PATH 让配置生效1source ~/.bash_profile 在命令行中输入 java -version 验证，出现以下内容说明安装配置成功。123java version "1.8.0_161"Java(TM) SE Runtime Environment (build 1.8.0_161-b12)Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LNMP 网站无法访问的解决方法]]></title>
     <url>%2F%E8%8A%92%E6%9E%9C%E5%B8%83%E4%B8%81%2FLNMP-%E7%BD%91%E7%AB%99%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%2F</url>
     <content type="text"><![CDATA[解决方案问题说明之前搭建基于 LNMP + WordPress 的博客，到目前为止出现过两次 Error establishing a database connection 无法访问网站 解决过程// 2017.10.30 在排除了服务器的问题之后 初步推断是 MySQL 数据库连接的问题 查看 MySQL 日志 在 /var/log/mysqld.log 中发现以下 1234567892017-10-30 11:49:45 9260 [ERROR] InnoDB: Cannot allocate memory for the buffer pool2017-10-30 11:49:45 9260 [ERROR] Plugin 'InnoDB' init function returned error.2017-10-30 11:49:45 9260 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.2017-10-30 11:49:45 9260 [ERROR] Unknown/unsupported storage engine: InnoDB2017-10-30 11:49:45 9260 [ERROR] Aborting 根据日志搜索 MySQL 出现 InnoDB: Cannot allocate memory for the buffer pool 参考 解决MySQL : InnoDB: Cannot allocate memory for the buffer pool 有人也遇到了相同的问题 原因是给的内存不够 期间查看和重启 MySQL 都出错，各种方法都解决不了 在 /etc/my.conf 中做以下修改，并重启云主机 1innodb_buffer_pool_size =256M 问题得到了解决。 // 2018.2.10 又出现相同的问题，由于把解决方案记录在博客上了，也没搜到合适的解决方案。 重启了一次云主机和 MySQL 问题得到了解决。 收获网站能正常访问了 删除不必要的插件 做好备份 做好备份 做好备份]]></content>
@@ -21,6 +33,7 @@
       </categories>
       <tags>
         <tag>Hadoop安装</tag>
+        <tag>大数据</tag>
       </tags>
   </entry>
   <entry>
@@ -44,8 +57,8 @@
       </categories>
       <tags>
         <tag>CentOS</tag>
-        <tag>网络配置</tag>
         <tag>克隆</tag>
+        <tag>网络配置</tag>
       </tags>
   </entry>
   <entry>
@@ -56,8 +69,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>VirtualBox</tag>
         <tag>CentOS</tag>
+        <tag>VirtualBox</tag>
         <tag>双网卡</tag>
       </tags>
   </entry>
