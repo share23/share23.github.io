@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Flume 实战练习]]></title>
+    <url>%2FBD%2FFlume-%E5%AE%9E%E6%88%98%E7%BB%83%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[前期准备了解Flume 架构及核心组件Flume 架构及核心组件 Source : 收集（指定数据源从哪里获取） Channel : 聚集 Sink : 输出（把数据写到哪里去） 学习使用 Flume通过一个简单的小例子学习使用 Flume 使用 Flume 的关键就是写配置文件 配置文件的构成： A) 配置 SourceB) 配置 ChannelC) 配置 SinkD) 把以上三个组件串起来 A simple example 123456789101112131415161718192021222324252627282930313233# example.conf: A single-node Flume configuration# Name the components on this agenta1.sources = r1a1.sinks = k1a1.channels = c1# a1: agent 的名称# r1: source 的名称# k1: sink 的名称# c1: channel 的名称# Describe/configure the sourcea1.sources.r1.type = netcata1.sources.r1.bind = localhosta1.sources.r1.port = 44444# type: source组件的类型# bind: source绑定的主机或IP# port: source绑定的端口号# Describe the sinka1.sinks.k1.type = logger# 把日志输出到控制台# Use a channel which buffers events in memorya1.channels.c1.type = memory# 存放在内存队列# Bind the source and sink to the channela1.sources.r1.channels = c1a1.sinks.k1.channel = c1# r1的channels指定到c1# k1的channel从c1得到# 一个source可以输出到多个channel# 一个channel只能输出一个sink 实战一需求需求：从指定网络端口采集数据输出到控制台 写配置文件在 /abs/app/apache-flume-1.6.0-cdh5.7.0-bin/conf 目录中新建 example.conf 如下: 1234567891011121314151617181920# example.conf: A single-node Flume configuration# Name the components on this agenta1.sources = r1a1.sinks = k1a1.channels = c1# Describe/configure the sourcea1.sources.r1.type = netcata1.sources.r1.bind = hadoopa1.sources.r1.port = 44444# Describe the sinka1.sinks.k1.type = logger# Use a channel which buffers events in memorya1.channels.c1.type = memory# Bind the source and sink to the channela1.sources.r1.channels = c1a1.sinks.k1.channel = c1 启动 agentFlume 官网启动 agent 的命令: 1$ bin/flume-ng agent -n $agent_name -c conf -f conf/flume-conf.properties.template agent options:–name,-n the name of this agent (required)–conf,-c use configs in directory–conf-file,-f specify a config file (required if -z missing) 实际用的启动 agent 的命令: 1flume-ng agent -n a1 -c $FLUME_HOME $FLUME_HOME/conf/example.conf -Dflume.root.logger=INFO,console // Dflume.root.logger=INFO,console 为将输出结果显示到控制台 启动失败12345Info: Including Hive libraries found via () for Hive access+ exec /abs/app/jdk1.8.0_161/bin/java -Xmx20m -Dflume.root.logger=INFO,console -cp '/abs/app/apache-flume-1.6.0-cdh5.7.0-bin:/abs/app/apache-flume-1.6.0-cdh5.7.0-bin/lib/*:/lib/*' -Djava.library.path= org.apache.flume.node.Application -n a1 -f /abs/app/apache-flume-1.6.0-cdh5.7.0-bin/conf/example.conflog4j:WARN No appenders could be found for logger (org.apache.flume.lifecycle.LifecycleSupervisor).log4j:WARN Please initialize the log4j system properly.log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info. 上网查了一下，别人是 -c 的路径指定错误，我的也错了。 -c 后面跟的是 Flume 的 conf 目录 所以正确的启动命令为: 1flume-ng agent -n a1 -c $FLUME_HOME/conf -f $FLUME_HOME/conf/example.conf -Dflume.root.logger=INFO,console 正常启动后可以看到如下: 可以看到 Sink 和 Source 都启动了 绑定的主机名为 hadoop 的 IP 和绑定的端口号都有显示 验证12[root@hadoop ~]# telnet hadoop 44444-bash: telnet: command not found 显示找不到 telnet ，用 yum install telnet 安装telnet telnet 进入 hadoop 的 44444 端口进行输入单词按 Enter agent 的那一端显示如下: 以上实现了从指定网络端口采集数据输出到控制台的需求。 实战二 实战三]]></content>
+      <categories>
+        <category>BD</category>
+      </categories>
+      <tags>
+        <tag>Flume</tag>
+        <tag>Practise</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Flume 环境部署]]></title>
     <url>%2FBD%2FFlume-%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%2F</url>
     <content type="text"><![CDATA[步骤Flume概述访问 Flume 官网了解 Flume 是什么、能做什么、如何使用。 Flume 安装前置条件Flume 安装前置条件如下： 123456789101112131415Java Runtime Environment - Java 1.8 or later#Java 运行环境 - Java 1.8 或以上 Memory - Sufficient memory for configurations used by sources, channels or sinks#内存 - 足够的内存配置供 sources、channels、sinks 使用Disk Space - Sufficient disk space for configurations used by channels or sinks#磁盘空间 - 足够的磁盘空间配置供 sources、channels、sinks 使用Directory Permissions - Read/Write permissions for directories used by agent# 目录权限 - 赋予 agent 对目录的读写权限 安装 JDK参照 ： Java8 的安装 下载 Flume 与解压下载地址 找到 flume-ng-1.6.0-cdh5.7.0.tar.gz 将他传输到 /abs/software 目录 解压到指定目录 123#将Flume解压到/abs/app/中tar -zxvf flume-ng-1.6.0-cdh5.7.0.tar.gz -C /abs/app/ 配置 Flume 环境变量将 Flume 目录添加到系统环境变量(~/.bash_profile)中 1234vi ~/.bash_profileexport FLUME_HOME=/abs/app/apache-flume-1.6.0-cdh5.7.0-binexport PATH=$FLUME_HOME/bin:$PATH 让配置生效 1source ~/.bash_profile 配置 Flume在 /abs/app/apache-flume-1.6.0-cdh5.7.0-bin/conf 目录对 Flume 进行相关配置 拷贝 Flume 环境配置脚本 1cp flume-env.sh.template flume-env.sh 1234567#编辑 flume-env.shvi flume-env.sh# 在# export JAVA_HOME=/usr/lib/jvm/java-6-sun下面添加如下配置export JAVA_HOME=/abs/app/jdk1.8.0_161 验证在 /abs/app/apache-flume-1.6.0-cdh5.7.0-bin/bin 目录输入 flume-ng version 验证 出现以下内容说明安装配置成功。 12345Flume 1.6.0-cdh5.7.0Source code repository: https://git-wip-us.apache.org/repos/asf/flume.gitRevision: 8f5f5143ae30802fe79f9ab96f893e6c54a105d1Compiled by jenkins on Wed Mar 23 11:38:48 PDT 2016From source with checksum 50b533f0ffc32db9246405ac4431872e]]></content>
@@ -14,13 +26,13 @@
   <entry>
     <title><![CDATA[基于 CentOS7.2 环境编译 Spark-2.2.0 源码]]></title>
     <url>%2FSpark%2F%E5%9F%BA%E4%BA%8E-CentOS7-2-%E7%8E%AF%E5%A2%83%E7%BC%96%E8%AF%91-Spark-2-2-0-%E6%BA%90%E7%A0%81%2F</url>
-    <content type="text"><![CDATA[编译 Spark-2.2.0 源码参考 基于CentOS6.4环境编译Spark-2.1.0源码 需求分析根据 Spark 官方文档编译模块的介绍如下： 1The Maven-based build is the build of reference for Apache Spark. Building Spark using Maven requires Maven 3.3.9 or newer and Java 8+. Note that support for Java 7 was removed as of Spark 2.2.0. 得出编译 Spark-2.2.0 需要 Maven 3.3.9 和 Java 8+ 前期准备 Java8 的安装 Maven3.3.9 的安装 Spark-2.2.0 源码下载Spark 下载地址 解压将下载好的 spark-2.2.0.tgz 通过 Xftp 传输到 /abs/software 目录 解压 spark-2.2.0.tgz 123# 将Spark源码包解压到/abs/app/中tar -zxvf spark-2.2.0.tgz -C /abs/app/ 解压后的目录机构如下所示： 编译查看 Spark 官方文档编译源码部分 我们可以使用 Spark 源码目录中的 dev 下的 make-distribution.sh 脚本，官方提供的编译命令如下： 1./dev/make-distribution.sh --name custom-spark --pip --r --tgz -Psparkr -Phadoop-2.7 -Phive -Phive-thriftserver -Pmesos -Pyarn 可以根据具体的条件来编译 Spark，比如我们使用的 Hadoop 版本是 2.6.0-cdh5.7.0，并且我们需要将 Spark 运行在 YARN 上、支持对 Hive 的操作，那么我们的 Spark 源码编译脚本就是： 1./dev/make-distribution.sh --name 2.6.0-cdh5.7.0 --tgz -Pyarn -Phadoop-2.6 -Phive -Phive-thriftserver -Dhadoop.version=2.6.0-cdh5.7.0]]></content>
+    <content type="text"><![CDATA[编译 Spark-2.2.0 源码参考 基于CentOS6.4环境编译Spark-2.1.0源码 需求分析实际工作中，Spark 官网所提供的安装包不能满足我们的需求。因为环境的不同出现问题所以必须要结合实际环境用 Spark 源码进行编译后使用。 根据 Spark 官方文档编译模块的介绍如下： 1The Maven-based build is the build of reference for Apache Spark. Building Spark using Maven requires Maven 3.3.9 or newer and Java 8+. Note that support for Java 7 was removed as of Spark 2.2.0. 得出编译 Spark-2.2.0 需要 Maven 3.3.9 和 Java 8+ 前期准备 Java8 的安装 Maven3.3.9 的安装 Spark-2.2.0 源码下载Spark 下载地址 解压将下载好的 spark-2.2.0.tgz 通过 Xftp 传输到 /abs/software 目录 解压 spark-2.2.0.tgz 123# 将Spark源码包解压到/abs/app/中tar -zxvf spark-2.2.0.tgz -C /abs/app/ 解压后的目录机构如下所示： 编译查看 Spark 官方文档编译源码部分 我们可以使用 Spark 源码目录中的 dev 下的 make-distribution.sh 脚本，官方提供的编译命令如下： 1./dev/make-distribution.sh --name custom-spark --pip --r --tgz -Psparkr -Phadoop-2.7 -Phive -Phive-thriftserver -Pmesos -Pyarn 可以根据具体的条件来编译 Spark，比如我们使用的 Hadoop 版本是 2.6.0-cdh5.7.0，并且我们需要将 Spark 运行在 YARN 上、支持对 Hive 的操作，那么我们的 Spark 源码编译脚本就是： 1./dev/make-distribution.sh --name 2.6.0-cdh5.7.0 --tgz -Pyarn -Phadoop-2.6 -Phive -Phive-thriftserver -Dhadoop.version=2.6.0-cdh5.7.0]]></content>
       <categories>
         <category>Spark</category>
       </categories>
       <tags>
         <tag>编译</tag>
-        <tag>spark</tag>
+        <tag>Spark</tag>
       </tags>
   </entry>
   <entry>
@@ -91,8 +103,8 @@
       </categories>
       <tags>
         <tag>CentOS</tag>
-        <tag>克隆</tag>
         <tag>网络配置</tag>
+        <tag>克隆</tag>
       </tags>
   </entry>
   <entry>
