@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Flume 环境部署]]></title>
+    <url>%2FBD%2FFlume-%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%2F</url>
+    <content type="text"><![CDATA[步骤Flume概述访问 Flume 官网了解 Flume 是什么、能做什么、如何使用。 Flume 安装前置条件Flume 安装前置条件如下： 123456789101112131415Java Runtime Environment - Java 1.8 or later#Java 运行环境 - Java 1.8 或以上 Memory - Sufficient memory for configurations used by sources, channels or sinks#内存 - 足够的内存配置供 sources、channels、sinks 使用Disk Space - Sufficient disk space for configurations used by channels or sinks#磁盘空间 - 足够的磁盘空间配置供 sources、channels、sinks 使用Directory Permissions - Read/Write permissions for directories used by agent# 目录权限 - 赋予 agent 对目录的读写权限 安装 JDK参照 ： Java8 的安装 下载 Flume 与解压下载地址 找到 flume-ng-1.6.0-cdh5.7.0.tar.gz 将他传输到 /abs/software 目录 解压到指定目录 123#将Flume解压到/abs/app/中tar -zxvf flume-ng-1.6.0-cdh5.7.0.tar.gz -C /abs/app/ 配置 Flume 环境变量将 Flume 目录添加到系统环境变量(~/.bash_profile)中 1234vi ~/.bash_profileexport FLUME_HOME=/abs/app/apache-flume-1.6.0-cdh5.7.0-binexport PATH=$FLUME_HOME/bin:$PATH 让配置生效 1source ~/.bash_profile 配置 Flume在 /abs/app/apache-flume-1.6.0-cdh5.7.0-bin/conf 目录对 Flume 进行相关配置 拷贝 Flume 环境配置脚本 1cp flume-env.sh.template flume-env.sh 1234567#编辑 flume-env.shvi flume-env.sh# 在# export JAVA_HOME=/usr/lib/jvm/java-6-sun下面添加如下配置export JAVA_HOME=/abs/app/jdk1.8.0_161 验证在 /abs/app/apache-flume-1.6.0-cdh5.7.0-bin/bin 目录输入 flume-ng version 验证 出现以下内容说明安装配置成功。 12345Flume 1.6.0-cdh5.7.0Source code repository: https://git-wip-us.apache.org/repos/asf/flume.gitRevision: 8f5f5143ae30802fe79f9ab96f893e6c54a105d1Compiled by jenkins on Wed Mar 23 11:38:48 PDT 2016From source with checksum 50b533f0ffc32db9246405ac4431872e]]></content>
+      <categories>
+        <category>BD</category>
+      </categories>
+      <tags>
+        <tag>Flume</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[基于 CentOS7.2 环境编译 Spark-2.2.0 源码]]></title>
     <url>%2FSpark%2F%E5%9F%BA%E4%BA%8E-CentOS7-2-%E7%8E%AF%E5%A2%83%E7%BC%96%E8%AF%91-Spark-2-2-0-%E6%BA%90%E7%A0%81%2F</url>
     <content type="text"><![CDATA[编译 Spark-2.2.0 源码参考 基于CentOS6.4环境编译Spark-2.1.0源码 需求分析根据 Spark 官方文档编译模块的介绍如下： 1The Maven-based build is the build of reference for Apache Spark. Building Spark using Maven requires Maven 3.3.9 or newer and Java 8+. Note that support for Java 7 was removed as of Spark 2.2.0. 得出编译 Spark-2.2.0 需要 Maven 3.3.9 和 Java 8+ 前期准备 Java8 的安装 Maven3.3.9 的安装 Spark-2.2.0 源码下载Spark 下载地址 解压将下载好的 spark-2.2.0.tgz 通过 Xftp 传输到 /abs/software 目录 解压 spark-2.2.0.tgz 123# 将Spark源码包解压到/abs/app/中tar -zxvf spark-2.2.0.tgz -C /abs/app/ 解压后的目录机构如下所示： 编译查看 Spark 官方文档编译源码部分 我们可以使用 Spark 源码目录中的 dev 下的 make-distribution.sh 脚本，官方提供的编译命令如下： 1./dev/make-distribution.sh --name custom-spark --pip --r --tgz -Psparkr -Phadoop-2.7 -Phive -Phive-thriftserver -Pmesos -Pyarn 可以根据具体的条件来编译 Spark，比如我们使用的 Hadoop 版本是 2.6.0-cdh5.7.0，并且我们需要将 Spark 运行在 YARN 上、支持对 Hive 的操作，那么我们的 Spark 源码编译脚本就是： 1./dev/make-distribution.sh --name 2.6.0-cdh5.7.0 --tgz -Pyarn -Phadoop-2.6 -Phive -Phive-thriftserver -Dhadoop.version=2.6.0-cdh5.7.0]]></content>
