@@ -58,17 +58,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Maven3.3.9 的安装]]></title>
-    <url>%2FJava%2FMaven3-3-9-%E7%9A%84%E5%AE%89%E8%A3%85%2F</url>
-    <content type="text"><![CDATA[Maven3.3.9 在 Windows10 中的安装与配置说明为保证开发过程中版本的一致性，在虚拟机中 Maven 的版本为 3.3.9 所以物理机中 Maven 的版本为 3.3.9 版本不一致的时候先卸载 Maven ，再安装合适的版本 JDK 的版本也要一致，避免不必要的问题出现 卸载 Maven由于在物理机中的 Maven 版本不一致，所以先卸载再安装。 Maven 由于安装的时候只是解压，配置环境变量，设置本地仓库，所以卸载的时候也很简单 卸载过程如下： 1、删除解压的 Maven 文件夹； 2、右键我的电脑-属性-高级系统设置-环境变量-系统变量-Path，删除path里添加的 Maven 环境变量 D:\ST\IDEA\apache-maven-3.5.0\bin 3、删除本地仓库； 下载与解压 Maven 安装包Maven3.3.9 安装包下载地址 下载 apache-maven-3.3.9-bin.zip 在相应目录中解压 apache-maven-3.3.9-bin.zip 配置 Maven 环境变量右键我的电脑-属性-高级系统设置-环境变量-系统变量-Path 添加一条环境变量的记录 D:\ST\IDEA\apache-maven-3.3.9\bin 验证 Maven 安装的有效性按 Windows + r 输入 cmd 进入命令行界面 在命令行中输入 mvn -v 验证，出现以下内容说明安装配置成功。 123456Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)Maven home: D:\ST\IDEA\apache-maven-3.3.9\bin\..Java version: 1.8.0_121, vendor: Oracle CorporationJava home: D:\ST\JAVA\jdk\route\jreDefault locale: zh_CN, platform encoding: GBKOS name: "windows 10", version: "10.0", arch: "amd64", family: "dos" Maven3.3.9 在 CentOS7 中的安装与配置下载与解压 Maven 安装包Maven3.3.9 安装包下载地址 下载 apache-maven-3.3.9-bin.tar.gz 用 Xftp 将本地下载好的 JDK 包传输到 /abs/software 目录 解压到指定目录 123# 将Maven解压到/abs/app/中tar -zxvf apache-maven-3.3.9-bin.tar.gz -C /abs/app/ 配置 Maven 环境变量将 Maven 目录添加到系统环境变量(~/.bash_profile)中 1234vi ~/.bash_profileexport MAVEN_HOME=/abs/app/apache-maven-3.3.9export PATH=$MAVEN_HOME/bin:$PATH 让配置生效 1source ~/.bash_profile 验证 Maven 安装的有效性在命令行中输入 mvn -v 验证，出现以下内容说明安装配置成功。 123456Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)Maven home: /abs/app/apache-maven-3.3.9Java version: 1.8.0_161, vendor: Oracle CorporationJava home: /abs/app/jdk1.8.0_161/jreDefault locale: en_US, platform encoding: UTF-8OS name: "linux", version: "3.10.0-327.el7.x86_64", arch: "amd64", family: "unix"]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Maven</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Java8 的安装]]></title>
     <url>%2FJava%2FJava8-%E7%9A%84%E5%AE%89%E8%A3%85%2F</url>
     <content type="text"><![CDATA[Java8 在 CentOS7 中的安装与配置下载与解压 JDK在 Oracle 官网下载 JDK 在 Linux 下的安装包 jdk-8u161-linux-x64.tar.gz 在根目录下创建 /abs/software 目录，用 Xftp 将本地下载好的 JDK 包传输到 /abs/software 目录 解压到指定目录 123# 将JDK解压到/abs/app/中tar -zxvf jdk-8u161-linux-x64.tar.gz -C /abs/app/ 配置 Java 环境变量将 JDK 目录添加到系统环境变量(~/.bash_profile)中 1234vi ~/.bash_profileexport JAVA_HOME=/abs/app/jdk1.8.0_161export PATH=$JAVA_HOME/bin:$PATH 让配置生效 1source ~/.bash_profile 在命令行中输入 java -version 验证，出现以下内容说明安装配置成功。 123java version "1.8.0_161"Java(TM) SE Runtime Environment (build 1.8.0_161-b12)Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)]]></content>
@@ -125,8 +114,8 @@
       </categories>
       <tags>
         <tag>CentOS</tag>
-        <tag>网络配置</tag>
         <tag>克隆</tag>
+        <tag>网络配置</tag>
       </tags>
   </entry>
   <entry>
