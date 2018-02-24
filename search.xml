@@ -71,12 +71,11 @@
   <entry>
     <title><![CDATA[Java8 的安装]]></title>
     <url>%2FJava%2FJava8-%E7%9A%84%E5%AE%89%E8%A3%85%2F</url>
-    <content type="text"><![CDATA[Java8 在 CentOS7 中的安装与配置下载与解压 JDK在 Oracle 官网下载 JDK 在 Linux 下的安装包 jdk-8u161-linux-x64.tar.gz 在根目录下创建 /abs/software 目录，用 Xftp 将本地下载好的 JDK 包传输到 /abs/software 目录 解压到指定目录 123# 将JDK解压到/abs/app/中tar -zxvf jdk-8u161-linux-x64.tar.gz -C /abs/app/ 配置 Java 环境变量将 JDK 目录添加到系统环境变量(~/.bash_profile)中 1234vi ~/.bash_profileexport JAVA_HOME=/abs/app/jdk1.8.0_161export PATH=$JAVA_HOME/bin:$PATH 让配置生效 1source ~/.bash_profile 在命令行中输入 java -version 验证，出现以下内容说明安装配置成功。 123java version "1.8.0_161"Java(TM) SE Runtime Environment (build 1.8.0_161-b12)Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)]]></content>
+    <content type="text"><![CDATA[Java8 在 Windows10 中的安装与配置下载与安装 JDK在 Oracle 官网下载 JDK 在 Windows 下的安装包 jdk-8u161-windows-x64.exe 将 jdk-8u161-windows-x64.exe 安装到 D:\ST\JAVA\jdk\route 配置 Java 环境变量右键我的电脑-属性-高级系统设置-环境变量-系统变量 进行如下配置: 12345678# 新建 JAVA_HOMED:\ST\JAVA\jdk\route# 新建 CLASS_PATHD:\ST\JAVA\jdk\route\lib# 添加一条 Path 的值D:\ST\JAVA\jdk\route\bin 验证 Java 安装的有效性在命令行中输入 java -version 验证，出现以下内容说明安装配置成功。 123java version "1.8.0_161"Java(TM) SE Runtime Environment (build 1.8.0_161-b12)Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode) Java8 在 CentOS7 中的安装与配置下载与解压 JDK在 Oracle 官网下载 JDK 在 Linux 下的安装包 jdk-8u161-linux-x64.tar.gz 在根目录下创建 /abs/software 目录，用 Xftp 将本地下载好的 JDK 包传输到 /abs/software 目录 解压到指定目录 123# 将JDK解压到/abs/app/中tar -zxvf jdk-8u161-linux-x64.tar.gz -C /abs/app/ 配置 Java 环境变量将 JDK 目录添加到系统环境变量(~/.bash_profile)中 1234vi ~/.bash_profileexport JAVA_HOME=/abs/app/jdk1.8.0_161export PATH=$JAVA_HOME/bin:$PATH 让配置生效 1source ~/.bash_profile 验证 Java 安装的有效性在命令行中输入 java -version 验证，出现以下内容说明安装配置成功。 123java version "1.8.0_161"Java(TM) SE Runtime Environment (build 1.8.0_161-b12)Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)]]></content>
       <categories>
         <category>Java</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
         <tag>Java</tag>
       </tags>
   </entry>
