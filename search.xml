@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo d 失败的解决方法]]></title>
+    <url>%2FHexo%2Fhexo-d-%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[解决过程环境说明客户端平台:&nbsp;&nbsp;Windows10 博客托管平台:&nbsp;&nbsp;GitHub 问题描述在用 hexo d 更新 Hexo 静态博客时，报了以下错误 123FATAL bash: /dev/tty: No such device or addresserror: failed to execute prompt script (exit code 1)fatal: could not read Username for 'https://github.com': Invalid argument 验证问题所在验证本地文件是否出错 1234# 启动本地服务器 hexo server# 在浏览器输入 http://localhost:4000/ 经过以上操作发现本地文件一切正常 与 GitHub 的连接问题 从报的错中可以推断出差不多是与 GitHub 的连接问题 解决方案通过搜索引擎查得到相应的解决方案 归纳如下: 1.重新生成 SSH key 12345# 在CMD中输入以下命令ssh-keygen -t rsa -C "Github的注册邮箱地址"# 一直按Enter知道出现以下Your public key has been saved in /c/Users/user/.ssh/id_rsa.pub. 用 Sublime 打开 /c/Users/user/.ssh/id_rsa.pub 并复制其内容 访问 GitHub – Settings – SSH and GPG keys – New SSH key Title:&nbsp;&nbsp;blog &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Key:&nbsp;&nbsp;id_rsa.pub 的内容 2.修改站点配置文件 _config.yml 123456# 把deploy中的repo由注释的格式改为以下格式deploy: type: git #repo: https://github.com/username/username.github.io.git repo: git@github.com:username/username.github.io.git branch: master 验证1234# 在CMD中依次输入以下命令，结果不存在报错，Hexo博客能正常更新hexo cleanhexo ghexo d]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>solution</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Kafka API 编程练习]]></title>
     <url>%2FKafka%2FKafka-API-%E7%BC%96%E7%A8%8B%E7%BB%83%E4%B9%A0%2F</url>
-    <content type="text"><![CDATA[IDEA + Maven 构建开发环境安装与配置 IDEA 参照 INTELLIJ IDEA 教程 进行 IDEA 的安装与配置 安装与配置 Maven 参照 INTELLIJ IDEA MAVEN 配置&nbsp;&nbsp;与&nbsp;&nbsp;Maven3.3.9 的安装 进行 Maven 在 Windows10 下的安装与整合 IDEA 的配置 新建 Maven Project 打开 IDEA 然后 Create New Project 进行如下设置: 进行相关配置新建的 Maven Project 有报错，在右下角的 Event Log 中点击 Import Changes 对 pom.xml 作以下修改: 具体可参考*(待上传) Kafka 的源码是用 Scala 编写的，我们如果要用 Java 来编程需要做如下设置: Producer API 的使用Consumer API 的使用]]></content>
+    <content type="text"><![CDATA[IDEA + Maven 构建开发环境安装与配置 IDEA 参照 INTELLIJ IDEA 教程 进行 IDEA 的安装与配置 安装与配置 Maven 参照 INTELLIJ IDEA MAVEN 配置&nbsp;&nbsp;与&nbsp;&nbsp;Maven3.3.9 的安装 进行 Maven 在 Windows10 下的安装与整合 IDEA 的配置 新建 Maven Project 打开 IDEA 然后 Create New Project 进行如下设置: 进行相关配置新建的 Maven Project 有报错，在右下角的 Event Log 中点击 Import Changes 对 pom.xml 作以下修改: 具体可参考*(待上传) Kafka 的源码是用 Scala 编写的，我们如果要用 Java 来编程需要做如下设置 将目录结构设置为 Producer API 的使用新建 Java 类参照目录结构在 com.share.spark.kafka 包中新建 KafkaProperties 类 参照目录结构在 com.share.spark.kafka 包中新建 KafkaProducer 类 参照目录结构在 com.share.spark.kafka 包中新建 KafkaClientApp 类 项目代码: Demo 准备与测试说明: 服务器为 CentOS7,本地为 Windows10 本地访问服务器需要对服务器的防火墙进行相关设置(这里采用临时关闭防火墙) 12345# 查看防火墙的状态service firewalld status# 临时关闭防火墙service firewalld stop Consumer API 的使用]]></content>
       <categories>
         <category>Kafka</category>
       </categories>
@@ -98,8 +109,7 @@
         <category>芒果布丁</category>
       </categories>
       <tags>
-        <tag>LNMP</tag>
-        <tag>解决方案</tag>
+        <tag>solution</tag>
       </tags>
   </entry>
   <entry>
