@@ -2,8 +2,11 @@
 <search>
   <entry>
     <title><![CDATA[Spark Streaming 实时流处理项目实战环境搭建汇总]]></title>
-    <url>%2Funcategorized%2FSpark-Streaming-%E5%AE%9E%E6%97%B6%E6%B5%81%E5%A4%84%E7%90%86%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%B1%87%E6%80%BB%2F</url>
+    <url>%2FSpark%2FSpark-Streaming-%E5%AE%9E%E6%97%B6%E6%B5%81%E5%A4%84%E7%90%86%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%B1%87%E6%80%BB%2F</url>
     <content type="text"><![CDATA[说明这里做的汇总旨在归纳总结怎么从0开始搭建 Spark Streaming 实时流处理项目实战环境 之前已经模块化的把各组件的安装配置总结出来了 现在是补充说明并把他们整合在一起 在此基础上进行相关操作与拓展 前提虚拟机软件: Virtual Box 服务器端: CentOS 7.2 (配置双网卡及其他基本配置) 客户端: Windows 10 + IDEA + Maven 3.3.9 JDK 的安装这里安装的 JDK 版本为 1.8.0_161 参照 Java8 的安装 在服务器端和客户端进行安装 在 CentOS 7.2 和 Windows 10 中安装要保证版本的一致性 避免出现不必要的错误 Scala 的安装这里安装的 Scala 版本为 2.11.8 参照 Scala 的安装 在 CentOS 7.2 中安装 在 Windows 10 IDEA 中安装 Scala 插件 1Configure --&gt; Plugins --&gt; Install JetBrains plugins --&gt; 搜索Scala --&gt; Install 如果插件下载失败，参考 Intellij idea安装scala插件详解 进行相关操作 Maven 的安装这里安装的 Maven 版本为 3.3.9 参照 Maven3.3.9 的安装在服务器端和客户端进行安装 在 CentOS 7.2 和 Windows 10 中安装要保证版本的一致性 避免出现不必要的错误 Hadoop 的安装这里搭建的 Hadoop 版本为 2.6.0-cdh5.7.0 采用的是伪分布式安装 参照 Hadoop 环境搭建 在 CentOS 7.2 中安装 ZooKeeper 的安装这里安装的 ZooKeeper 版本为 3.4.5-cdh5.7.0 参照 ZooKeeper 的安装 在 CentOS 7.2 中安装 HBase 的安装这里安装的 HBase 版本为 1.2.0-cdh5.7.0 参照 HBase 的安装 在 CentOS 7.2 中安装 Spark 的安装这里安装的 Spark 为编译之后的 编译过程在下面有详细介绍 参照 Spark 环境搭建 在 CentOS 7.2 中安装 IDEA + Maven + Spark Streaming主要是基于之前的操作在项目 pom.xml 中添加对应的依赖 参照 Spark Streaming 开发环境搭建 在 IDEA 中进行相关设置 Demo//待上传 Demo]]></content>
+      <categories>
+        <category>Spark</category>
+      </categories>
       <tags>
         <tag>BD</tag>
         <tag>Spark</tag>
