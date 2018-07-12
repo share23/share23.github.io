@@ -110,7 +110,8 @@
 <meta property="og:description" content="对毕业设计《基于大数据的餐饮推荐系统设计》做一份总结">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10228133-d7375922c4788aed.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-07-10T12:51:54.351Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/10228133-e8d8b4a658c84a49.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-12T12:44:37.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于大数据的餐饮推荐系统总结">
 <meta name="twitter:description" content="对毕业设计《基于大数据的餐饮推荐系统设计》做一份总结">
@@ -366,8 +367,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T20:51:54+08:00">
-                2018-07-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-12T20:44:37+08:00">
+                2018-07-12
               </time>
             
           </span>
@@ -438,7 +439,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,025
+                  1,891
                 </span>
               
 
@@ -454,7 +455,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  6
                 </span>
               
             </div>
@@ -488,8 +489,7 @@
 <p>真正在查了很多资料才发现可能想的有点简单了，从零开始突然发现自己面对的是一个庞然大物的时候是不知所措的。</p>
 <p>在和朋友的交流中的出一个结论：先做一个最简单的，再慢慢优化。</p>
 <p>在一步一步的试错中前行。</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>待补充。。。</p>
-<h3 id="技术的选型"><a href="#技术的选型" class="headerlink" title="技术的选型"></a>技术的选型</h3><p>最初的设想是要实现离线推荐与实时推荐，最终选定了 Lambda 架构。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="技术的选型"><a href="#技术的选型" class="headerlink" title="技术的选型"></a>技术的选型</h3><p>最初的设想是要实现离线推荐与实时推荐，最终选定了 Lambda 架构。</p>
 <p>Lambda 架构的主要思想是将大数据系统构建为多个层次。</p>
 <p>这里分为三层: 批处理层、实时处理层、服务层。</p>
 <p>批处理层: 负责处理离线数据产生离线推荐信息</p>
@@ -503,15 +503,34 @@
 <p>技术无止境，但都是服务于业务，以上的想法要实现还有很长的路要走。</p>
 <p>美团和饿了么都未提供经过脱敏的餐饮数据，也没有相关的支持。</p>
 <p>所以数据只能自己造，使用 Python 写了一个小的餐饮评分数据生成器，通过其产生数据作为数据来源。</p>
-<h3 id="大数据平台的搭建"><a href="#大数据平台的搭建" class="headerlink" title="大数据平台的搭建"></a>大数据平台的搭建</h3><p>待补充。。。</p>
-<h3 id="推荐代码的编写"><a href="#推荐代码的编写" class="headerlink" title="推荐代码的编写"></a>推荐代码的编写</h3><p>待补充。。。</p>
+<p>离线数据产生了10万条，实时数据是通过 Linux 的定时执行工具 <code>crontab</code> 定时执行  Python 脚本。</p>
+<p>首先要将离线评分数据写入 HBase 数据库，先把本地的数据导入到 HDFS 中，在将其从 HDFS 中传输到 HBase 数据库中。</p>
+<h3 id="大数据平台的搭建"><a href="#大数据平台的搭建" class="headerlink" title="大数据平台的搭建"></a>大数据平台的搭建</h3><p>参照 <a href="https://share23.github.io/Spark/Spark-Streaming-%E5%AE%9E%E6%97%B6%E6%B5%81%E5%A4%84%E7%90%86%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%B1%87%E6%80%BB/" target="_blank" rel="noopener">Spark Streaming 实时流处理项目实战环境搭建汇总</a><br>完成大数据平台的搭建。</p>
+<h3 id="推荐代码的编写"><a href="#推荐代码的编写" class="headerlink" title="推荐代码的编写"></a>推荐代码的编写</h3><p>通过业务代码实现对餐饮的推荐，最终选用了 <code>Spark MLlib</code> 中的 <code>ALS</code> 算法。</p>
+<p>考虑过基于用户或基于商品的算法进行相关推荐，自己生成的餐饮数据的数量与特征与以上不是很匹配，就选了个基于评分数据的协同过滤算法。</p>
+<p>相对来说这是比较简单的一种方式。</p>
+<p>如何在搭建好并经过连通性测试的大数据平台上进行业务代码的编写，也就是整合 <code>ALS</code>。</p>
+<p><a href="https://www.jianshu.com/p/b65e10057411" target="_blank" rel="noopener">22基于Spark机器学习跟实时流计算的智能推荐系统</a> 给了我很大的启发。</p>
+<p>首先是在思想上的，这篇文章让我对 <code>ALS</code> 的原理与整个推荐系统的流程有了初步的认识。</p>
+<p>其次是将他的核心业务代码移植到我的毕业设计中去，虽然有些代码的细节具体用法不是很懂，但是大致上的意思能理解个大概。</p>
+<p>计划在学习了 <code>Scala</code> 之后把注释写完整，思路再理一遍。</p>
+<p>作者的可视化界面使用 ASP.NET 编写的，出于节省内存的目的我这里采用的 <code>Spring Boot</code>框架整合 <code>Thymeleaf</code>模板。</p>
+<p>与作者相比，我在搭建大数据平台的时候用到了更多的大数据组件，但是作者在三年前就已经完成了业务代码的编写，在网上搜相关问题都能看到他的提问。</p>
+<h3 id="系统流程图"><a href="#系统流程图" class="headerlink" title="系统流程图"></a>系统流程图</h3><p><img src="https://upload-images.jianshu.io/upload_images/10228133-e8d8b4a658c84a49.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="系统流程图"></p>
+<h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p><a href="https://github.com/share23/Food_Recommender" target="_blank" rel="noopener">项目地址</a></p>
 <h2 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h2><h3 id="评分数据缺乏真实的来源"><a href="#评分数据缺乏真实的来源" class="headerlink" title="评分数据缺乏真实的来源"></a>评分数据缺乏真实的来源</h3><p>经过实际测试，没有真实的数据来源得到的推荐结果并没有实际价值。</p>
 <p>也无法得出合适的参数优化模型。</p>
 <h3 id="没有冷启动"><a href="#没有冷启动" class="headerlink" title="没有冷启动"></a>没有冷启动</h3><p>由于一切都是基于用户对餐饮数据的评分而产生的推荐结果，新的用户并未产生评分数据。</p>
 <p>缺乏评分也就无法实现推荐，像我们现在注册账户刚登进去就会给我们很多选项，让我们选择自己感兴趣的。</p>
 <p>这些都是实现了冷启动，通过这些确定了我们的爱好偏向，保证了在缺乏足够的数据之前进行相关推荐。</p>
-<h3 id="推荐算法单一"><a href="#推荐算法单一" class="headerlink" title="推荐算法单一"></a>推荐算法单一</h3><p>待补充。。。</p>
-<h3 id="硬件限制"><a href="#硬件限制" class="headerlink" title="硬件限制"></a>硬件限制</h3><p>待补充。。。</p>
+<h3 id="推荐算法单一"><a href="#推荐算法单一" class="headerlink" title="推荐算法单一"></a>推荐算法单一</h3><p>不同于传统推荐系统，现阶段的推荐系统是一个综合性质的应用，已经不再满足使用单一推荐算法完成推荐，融合众多推荐算法发挥他们的优势完成推荐才能使推荐系统更好地为人们服务。</p>
+<p>本设计采用的是机器学习库中的ALS算法，在之后的研究与学习中还应该融合其他优秀的推荐算法，基于实际需求充分发挥每个推荐算法的优势，搭建出更优秀的推荐系统。</p>
+<h3 id="硬件限制"><a href="#硬件限制" class="headerlink" title="硬件限制"></a>硬件限制</h3><p>受限于电脑内存、电脑性能和机器数量，要同时兼顾平台的搭建、大数据各组件的运行和代码的开发运行，在大数据推荐平台的搭建上选择伪分布式安装并未用到集群，不能完整地发挥大数据的优势。</p>
+<p>在代码编写完成后的运行速度与效率也受到限制，规模与真正的应用存在差距。在以后的工作中希望可以在这些方面得到更好的锻炼</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最终虽然完成了推荐系统的设计，但是也发现了许多问题与不足。</p>
+<p>整体过程中遇到了很多坑，一直在踩坑与爬坑。</p>
+<p>挺感谢这段经历的，在这个过程中收获了很多。</p>
+<p>下一阶段的目标是把基础打牢，然后跟着官网更深入地学习大数据。</p>
 
       
     </div>
@@ -541,7 +560,7 @@
   <p><span>本文标题:</span><a href="/大数据/基于大数据的餐饮推荐系统总结/">基于大数据的餐饮推荐系统总结</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 share 的个人博客">share</a></p>
   <p><span>发布时间:</span>2018年06月04日 - 22:06</p>
-  <p><span>最后更新:</span>2018年07月10日 - 20:07</p>
+  <p><span>最后更新:</span>2018年07月12日 - 20:07</p>
   <p><span>原始链接:</span><a href="/大数据/基于大数据的餐饮推荐系统总结/" title="基于大数据的餐饮推荐系统总结">http://yoursite.com/大数据/基于大数据的餐饮推荐系统总结/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/大数据/基于大数据的餐饮推荐系统总结/"  aria-label="复制成功！"></i></span>
   </p>
@@ -774,7 +793,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">3.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技术的选型"><span class="nav-number">3.1.</span> <span class="nav-text">技术的选型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据"><span class="nav-number">3.2.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大数据平台的搭建"><span class="nav-number">3.3.</span> <span class="nav-text">大数据平台的搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐代码的编写"><span class="nav-number">3.4.</span> <span class="nav-text">推荐代码的编写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不足"><span class="nav-number">4.</span> <span class="nav-text">不足</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#评分数据缺乏真实的来源"><span class="nav-number">4.1.</span> <span class="nav-text">评分数据缺乏真实的来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#没有冷启动"><span class="nav-number">4.2.</span> <span class="nav-text">没有冷启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐算法单一"><span class="nav-number">4.3.</span> <span class="nav-text">推荐算法单一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件限制"><span class="nav-number">4.4.</span> <span class="nav-text">硬件限制</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">3.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技术的选型"><span class="nav-number">3.1.</span> <span class="nav-text">技术的选型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据"><span class="nav-number">3.2.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大数据平台的搭建"><span class="nav-number">3.3.</span> <span class="nav-text">大数据平台的搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐代码的编写"><span class="nav-number">3.4.</span> <span class="nav-text">推荐代码的编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统流程图"><span class="nav-number">3.5.</span> <span class="nav-text">系统流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目地址"><span class="nav-number">3.6.</span> <span class="nav-text">项目地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不足"><span class="nav-number">4.</span> <span class="nav-text">不足</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#评分数据缺乏真实的来源"><span class="nav-number">4.1.</span> <span class="nav-text">评分数据缺乏真实的来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#没有冷启动"><span class="nav-number">4.2.</span> <span class="nav-text">没有冷启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐算法单一"><span class="nav-number">4.3.</span> <span class="nav-text">推荐算法单一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件限制"><span class="nav-number">4.4.</span> <span class="nav-text">硬件限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -816,7 +835,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">23.4k</span>
+    <span title="Site words total count">24.3k</span>
   
 </div>
 
