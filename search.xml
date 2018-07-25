@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Shell 脚本编程指南]]></title>
     <url>%2FLinux%2FShell-%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97%2F</url>
-    <content type="text"><![CDATA[说明方法Demo]]></content>
+    <content type="text"><![CDATA[说明Shell 和 Shell 脚本的区别Shell 指的是一种应用程序，常见的如 Windows 下的 CMD 窗口和 Linux 中的命令行窗口 Shell 脚本指的是为 Shell 编写的脚本程序 使用场景因为在 Linux 集群下有配置与管理的需求，工作量比较大 所以使用 Shell 脚本处理同步配置文件、管理每一个节点等操作 方法Demo]]></content>
       <categories>
         <category>Linux</category>
       </categories>
