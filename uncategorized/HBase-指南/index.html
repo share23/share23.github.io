@@ -1,4 +1,461 @@
-<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet"><script></script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4"><link rel="mask-icon" href="/images/safari_pinned_tab.svg?v=5.1.4" color="#222"><link rel="manifest" href="/images/manifest.json"><meta name="msapplication-config" content="/images/browserconfig.xml"><meta name="keywords" content="HBase,"><meta name="description" content="HBase 的学习笔记"><meta name="keywords" content="HBase"><meta property="og:type" content="article"><meta property="og:title" content="HBase 指南"><meta property="og:url" content="http://yoursite.com/uncategorized/HBase-指南/index.html"><meta property="og:site_name" content="share"><meta property="og:description" content="HBase 的学习笔记"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2018-08-12T05:04:18.895Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="HBase 指南"><meta name="twitter:description" content="HBase 的学习笔记"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Gemini",version:"5.1.4",sidebar:{position:"left",display:"always",offset:12,b2t:!0,scrollpercent:!0,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://yoursite.com/uncategorized/HBase-指南/"><title>HBase 指南 | share</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">share</span><span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">yesterday you said tomerrow</p></div><div class="site-nav-toggle"> <button><span class="btn-bar"></span><span class="btn-bar"></span><span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br> 首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br> 分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br> 标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br> 归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br> 关于</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br> 搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i></span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"> <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://yoursite.com/uncategorized/HBase-指南/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="share"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/share.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="share"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">HBase 指南</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T16:49:18+08:00">2018-08-10</time> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span> <span class="post-meta-item-text">更新于&#58;</span> <time title="更新于" itemprop="dateModified" datetime="2018-08-12T13:04:18+08:00">2018-08-12</time></span> <span class="post-comments-count"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-comment-o"></i></span><a href="/uncategorized/HBase-指南/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/uncategorized/HBase-指南/" itemprop="commentCount"></span></a></span> <span id="/uncategorized/HBase-指南/" class="leancloud_visitors" data-flag-title="HBase 指南"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span> <span class="post-meta-item-text">热度&#58;</span><span class="leancloud-visitors-count"></span> <span>℃</span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span> <span class="post-meta-item-text">字数统计&#58;</span> <span title="字数统计">575</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span> <span class="post-meta-item-text">阅读时长 &asymp;</span> <span title="阅读时长">3</span></div><div class="post-description"> HBase 的学习笔记</div></div></header><div class="post-body" itemprop="articleBody"><h2 id="HBase-简介"><a href="#HBase-简介" class="headerlink" title="HBase 简介"></a>HBase 简介</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><pre><code>HBase
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+  <script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/safari_pinned_tab.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="HBase," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HBase 的学习笔记">
+<meta name="keywords" content="HBase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HBase 指南">
+<meta property="og:url" content="http://yoursite.com/uncategorized/HBase-指南/index.html">
+<meta property="og:site_name" content="share">
+<meta property="og:description" content="HBase 的学习笔记">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-13T07:08:20.018Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HBase 指南">
+<meta name="twitter:description" content="HBase 的学习笔记">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/uncategorized/HBase-指南/"/>
+
+
+
+
+
+  <title>HBase 指南 | share</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">share</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">yesterday you said tomerrow</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/uncategorized/HBase-指南/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="share">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/share.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="share">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HBase 指南</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T16:49:18+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-13T15:08:20+08:00">
+                2018-08-13
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/uncategorized/HBase-指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/uncategorized/HBase-指南/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/uncategorized/HBase-指南/" class="leancloud_visitors" data-flag-title="HBase 指南">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  967
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  HBase 的学习笔记
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="HBase-简介"><a href="#HBase-简介" class="headerlink" title="HBase 简介"></a>HBase 简介</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><pre><code>HBase
 
 基于 HDFS 的大表软件(实时数据库)
 
@@ -7,7 +464,491 @@
 版本是通过 mvcc 技术控制：multiple version concurrent control
 
 HBase 数据是以字节形式存储
-</code></pre><h3 id="HBase-和-Hive-的区别"><a href="#HBase-和-Hive-的区别" class="headerlink" title="HBase 和 Hive 的区别"></a>HBase 和 Hive 的区别</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据库，不支持分析</span></span><br><span class="line">      hbase: 随机访问和实时读写</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据仓库，支持分析</span></span><br><span class="line">      hive：基于MR的离线计算</span><br></pre></td></tr></table></figure><h2 id="HBase-安装"><a href="#HBase-安装" class="headerlink" title="HBase 安装"></a>HBase 安装</h2><h3 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.解压</span></span><br><span class="line">      tar -xzvf hbase-1.2.6-bin.tar.gz -C /soft/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.符号链接</span></span><br><span class="line">      <span class="built_in">cd</span> /soft/</span><br><span class="line">      ln -s hbase-1.2.6/ hbase</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.环境变量</span></span><br><span class="line">      sudo nano /etc/profile</span><br><span class="line"></span><br><span class="line">	<span class="comment"># hbase环境变量</span></span><br><span class="line">	<span class="built_in">export</span> HBASE_HOME=/soft/hbase</span><br><span class="line">	<span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HBASE_HOME</span>/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.生效环境变量</span></span><br><span class="line">      <span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.验证hbase</span></span><br><span class="line">      hbase version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.配置hbase-env.sh</span></span><br><span class="line">      <span class="comment"># 添加</span></span><br><span class="line">      <span class="built_in">export</span> JAVA_HOME=/soft/jdk</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7.修改hbase-site.xml</span></span><br><span class="line">      &lt;configuration&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.rootdir&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;file:///home/centos/hbase&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;/home/centos/hbase/zk&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">      &lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 8.创建文件夹</span></span><br><span class="line">      mkdir -p /home/centos/hbase/zk</span><br><span class="line"></span><br><span class="line"><span class="comment"># 9.启动hbase</span></span><br><span class="line">      start-hbase.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 10.进入命令行</span></span><br><span class="line">      hbase shell</span><br></pre></td></tr></table></figure><h3 id="完全分布式安装"><a href="#完全分布式安装" class="headerlink" title="完全分布式安装"></a>完全分布式安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 0.关闭hbase进程</span></span><br><span class="line">      stop-hbase.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.开启zk进程</span></span><br><span class="line">      xzk.sh start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.开启hdfs进程</span></span><br><span class="line">      start-dfs.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.配置hbase，并分发</span></span><br><span class="line">      <span class="comment"># hbase-env.sh，添加</span></span><br><span class="line">      <span class="built_in">export</span> HBASE_MANAGES_ZK=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 修改hbase-site.xml</span></span><br><span class="line">      &lt;configuration&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;<span class="literal">true</span>&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.rootdir&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;hdfs://mycluster/user/hbase&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;/home/centos/zookeeper&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;s102:2181,s103:2181,s104:2181&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">      &lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 将hdfs配置文件拷贝到hbase/conf下</span></span><br><span class="line">      cp /soft/hadoop/etc/hadoop/hdfs-site.xml /soft/hbase/conf/</span><br><span class="line">      cp /soft/hadoop/etc/hadoop/core-site.xml /soft/hbase/conf/</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 修改regionservers</span></span><br><span class="line">      s102</span><br><span class="line">      s103</span><br><span class="line">      s104</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.分发hbase到其他节点</span></span><br><span class="line">      xsync.sh /soft/hbase</span><br><span class="line">      xsync.sh /soft/hbase-1.2.6</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.分发环境变量</span></span><br><span class="line">      su root</span><br><span class="line">      xsync.sh /etc/profile</span><br><span class="line">      <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.分别在s102-s104生效环境变量</span></span><br><span class="line">      <span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7.启动</span></span><br><span class="line">      start-hbase.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 8.进入命令行</span></span><br><span class="line">      hbase shell</span><br></pre></td></tr></table></figure><h2 id="HBase-数据模型"><a href="#HBase-数据模型" class="headerlink" title="HBase 数据模型"></a>HBase 数据模型</h2><h2 id="HBase-命令"><a href="#HBase-命令" class="headerlink" title="HBase 命令"></a>HBase 命令</h2><h2 id="HBase-开发"><a href="#HBase-开发" class="headerlink" title="HBase 开发"></a>HBase 开发</h2><h2 id="HBase-原理"><a href="#HBase-原理" class="headerlink" title="HBase 原理"></a>HBase 原理</h2></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">------ 本文结束------</div></div></div><div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>如果对您有帮助的话请我喝瓶水吧！</div> <button id="rewardButton" disable="enable" onclick='var qr=document.getElementById("QR");"none"===qr.style.display?qr.style.display="block":qr.style.display="none"'> <span>打赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"> <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="share 微信支付"><p>微信支付</p></div><div id="alipay" style="display:inline-block"> <img id="alipay_qr" src="/uploads/alipay.jpg" alt="share 支付宝"><p>支付宝</p></div></div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/HBase/" rel="tag"><i class="fa fa-tag"></i> HBase</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/ZooKeeper/ZooKeeper-指南/" rel="next" title="ZooKeeper 指南"><i class="fa fa-chevron-left"></i> ZooKeeper 指南</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap"> 文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap"> 站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"> <img class="site-author-image" itemprop="image" src="/uploads/share.jpg" alt="share"><p class="site-author-name" itemprop="name">share</p><p class="site-description motion-element" itemprop="description">不长肉的吃货</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"> <a href="/archives/"><span class="site-state-item-count">36</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"> <a href="/categories/index.html"><span class="site-state-item-count">15</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"> <a href="/tags/index.html"><span class="site-state-item-count">27</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/share23" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub</a></span></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-简介"><span class="nav-number">1.</span> <span class="nav-text">HBase 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HBase-和-Hive-的区别"><span class="nav-number">1.2.</span> <span class="nav-text">HBase 和 Hive 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-安装"><span class="nav-number">2.</span> <span class="nav-text">HBase 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地安装"><span class="nav-number">2.1.</span> <span class="nav-text">本地安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全分布式安装"><span class="nav-number">2.2.</span> <span class="nav-text">完全分布式安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-数据模型"><span class="nav-number">3.</span> <span class="nav-text">HBase 数据模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-命令"><span class="nav-number">4.</span> <span class="nav-text">HBase 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-开发"><span class="nav-number">5.</span> <span class="nav-text">HBase 开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-原理"><span class="nav-number">6.</span> <span class="nav-text">HBase 原理</span></a></li></ol></div></div></section><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; <span itemprop="copyrightYear">2018</span><span class="with-love"><i class="fa fa-user"></i></span> <span class="author" itemprop="copyrightHolder">share</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-area-chart"></i></span> <span class="post-meta-item-text">Site words total count&#58;</span> <span title="Site words total count">34.5k</span></div><div class="powered-by"><i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv">本站访客数:<span id="busuanzi_value_site_uv"></span></span></div> <span>|<span id="showDays"></span></span></div><script>var seconds=1e3,minutes=60*seconds,hours=60*minutes,days=24*hours,years=365*days,birthDay=Date.UTC(2018,1,18,15,0,0);setInterval(function(){var e=new Date,s=e.getFullYear(),t=e.getMonth()+1,a=e.getDate(),o=e.getHours(),n=e.getMinutes(),r=e.getSeconds(),u=Date.UTC(s,t,a,o,n,r)-birthDay,h=Math.floor(u/days),d=Math.floor((u-h*days)/hours),y=Math.floor((u-h*days-d*hours)/minutes),i=Math.floor((u-h*days-d*hours-y*minutes)/seconds);document.getElementById("showDays").innerHTML="本站已运行 "+h+" 天 "+d+" 小时 "+y+" 分钟 "+i+" 秒"},1e3)</script></footer></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script type="text/javascript">
+</code></pre><h3 id="HBase-和-Hive-的区别"><a href="#HBase-和-Hive-的区别" class="headerlink" title="HBase 和 Hive 的区别"></a>HBase 和 Hive 的区别</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据库，不支持分析</span></span><br><span class="line">      HBase: 基于 HDFS 的数据库，随机访问和实时读写，本身不支持分析</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据仓库，支持分析</span></span><br><span class="line">      Hive：基于 Hadoop 的数据仓库软件，多用于离线分析</span><br></pre></td></tr></table></figure>
+<h2 id="HBase-安装"><a href="#HBase-安装" class="headerlink" title="HBase 安装"></a>HBase 安装</h2><h3 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.解压</span></span><br><span class="line">      tar -xzvf hbase-1.2.6-bin.tar.gz -C /soft/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.符号链接</span></span><br><span class="line">      <span class="built_in">cd</span> /soft/</span><br><span class="line">      ln -s hbase-1.2.6/ hbase</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.环境变量</span></span><br><span class="line">      sudo nano /etc/profile</span><br><span class="line"></span><br><span class="line">	<span class="comment"># hbase环境变量</span></span><br><span class="line">	<span class="built_in">export</span> HBASE_HOME=/soft/hbase</span><br><span class="line">	<span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HBASE_HOME</span>/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.生效环境变量</span></span><br><span class="line">      <span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.验证hbase</span></span><br><span class="line">      hbase version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.配置hbase-env.sh</span></span><br><span class="line">      <span class="comment"># 添加</span></span><br><span class="line">      <span class="built_in">export</span> JAVA_HOME=/soft/jdk</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7.修改hbase-site.xml</span></span><br><span class="line">      &lt;configuration&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.rootdir&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;file:///home/centos/hbase&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;/home/centos/hbase/zk&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">      &lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 8.创建文件夹</span></span><br><span class="line">      mkdir -p /home/centos/hbase/zk</span><br><span class="line"></span><br><span class="line"><span class="comment"># 9.启动hbase</span></span><br><span class="line">      start-hbase.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 10.进入命令行</span></span><br><span class="line">      hbase shell</span><br></pre></td></tr></table></figure>
+<h3 id="完全分布式安装"><a href="#完全分布式安装" class="headerlink" title="完全分布式安装"></a>完全分布式安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 0.关闭hbase进程</span></span><br><span class="line">      stop-hbase.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.开启zk进程</span></span><br><span class="line">      xzk.sh start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.开启hdfs进程</span></span><br><span class="line">      start-dfs.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.配置hbase，并分发</span></span><br><span class="line">      <span class="comment"># hbase-env.sh，添加</span></span><br><span class="line">      <span class="built_in">export</span> HBASE_MANAGES_ZK=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 修改hbase-site.xml</span></span><br><span class="line">      &lt;configuration&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;<span class="literal">true</span>&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.rootdir&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;hdfs://mycluster/user/hbase&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;/home/centos/zookeeper&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                  &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;</span><br><span class="line">                  &lt;value&gt;s102:2181,s103:2181,s104:2181&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">      &lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 将hdfs配置文件拷贝到hbase/conf下</span></span><br><span class="line">      cp /soft/hadoop/etc/hadoop/hdfs-site.xml /soft/hbase/conf/</span><br><span class="line">      cp /soft/hadoop/etc/hadoop/core-site.xml /soft/hbase/conf/</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 修改regionservers</span></span><br><span class="line">      s102</span><br><span class="line">      s103</span><br><span class="line">      s104</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.分发hbase到其他节点</span></span><br><span class="line">      xsync.sh /soft/hbase</span><br><span class="line">      xsync.sh /soft/hbase-1.2.6</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.分发环境变量</span></span><br><span class="line">      su root</span><br><span class="line">      xsync.sh /etc/profile</span><br><span class="line">      <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.分别在s102-s104生效环境变量</span></span><br><span class="line">      <span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7.启动</span></span><br><span class="line">      start-hbase.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 8.进入命令行</span></span><br><span class="line">      hbase shell</span><br></pre></td></tr></table></figure>
+<h2 id="HBase-数据模型"><a href="#HBase-数据模型" class="headerlink" title="HBase 数据模型"></a>HBase 数据模型</h2><h2 id="HBase-命令"><a href="#HBase-命令" class="headerlink" title="HBase 命令"></a>HBase 命令</h2><h3 id="HBase-与-SQL-的区别"><a href="#HBase-与-SQL-的区别" class="headerlink" title="HBase 与 SQL 的区别"></a>HBase 与 SQL 的区别</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.进入hbase命令行</span></span><br><span class="line">      hbase shell</span><br><span class="line"></span><br><span class="line">                        hbase             sql</span><br><span class="line">-----------------------------------------------------------------------------------------</span><br><span class="line">      数据库            namespace				database</span><br><span class="line">      表                table					table</span><br><span class="line">      建库              create_namespace <span class="string">'ns1'</span>			create database ns1;</span><br><span class="line">      列出库            list_namespace				show databases;</span><br><span class="line">      建表              create <span class="string">'t1'</span>,<span class="string">'f1'</span>,<span class="string">'f2'</span>			create table t1(name varchar(100) ,..);</span><br><span class="line">      列出指定库下表     list_namespace_tables <span class="string">'ns1'</span>		use ns1; show tables;</span><br><span class="line">      删表              <span class="built_in">disable</span> <span class="string">'t1'</span>				drop table t1;</span><br><span class="line">                        drop <span class="string">'t1'</span></span><br><span class="line">      插入数据          put <span class="string">'ns1:t1'</span>,<span class="string">'row1'</span>,<span class="string">'f1:name'</span>,<span class="string">'tom'</span>	insert into xxx values xxx;</span><br><span class="line">      删除数据          delete <span class="string">'ns1:t1'</span>,<span class="string">'row1'</span>,<span class="string">'f1:name'</span>         delete from ....</span><br></pre></td></tr></table></figure>
+<h3 id="合并-HBase-中的小文件"><a href="#合并-HBase-中的小文件" class="headerlink" title="合并 HBase 中的小文件"></a>合并 HBase 中的小文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">major_compact <span class="string">'test:t1'</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除数据的区别"><a href="#删除数据的区别" class="headerlink" title="删除数据的区别"></a>删除数据的区别</h3><pre><code>HBase 在 shell 中删除时将整条记录删除
+HBase 在 api 中是删除最新版本的记录
+</code></pre><h2 id="HBase-开发"><a href="#HBase-开发" class="headerlink" title="HBase 开发"></a>HBase 开发</h2><h3 id="HBase-API-使用"><a href="#HBase-API-使用" class="headerlink" title="HBase API 使用"></a>HBase API 使用</h3><pre><code>TestHbase
+</code></pre><p><a href="">Demo</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建创建命名空间</span></span><br><span class="line">createNS()</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 创建表</span></span><br><span class="line">createTable()</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 插入数据</span></span><br><span class="line">putData1()</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 批量插入数据</span></span><br><span class="line">putData2()</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 删除数据</span></span><br><span class="line">delData()</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 删除表</span></span><br><span class="line">dropTable()</span><br></pre></td></tr></table></figure></p>
+<h2 id="HBase-原理"><a href="#HBase-原理" class="headerlink" title="HBase 原理"></a>HBase 原理</h2><h3 id="HBase-写入过程"><a href="#HBase-写入过程" class="headerlink" title="HBase 写入过程"></a>HBase 写入过程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># hbase数据在写入时，将数据写到WAL，同时写入到memstore(内存)中</span></span><br><span class="line"><span class="comment"># WAL作用：当内存数据由于断电或内存溢出等方式导致数据丢失，则可以通过WAL进行数据恢复</span></span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line"><span class="comment"># Memstore：hbase数据在内存中的体现，memstore有阈值，</span></span><br><span class="line"><span class="comment"># 如果超出此大小就会被刷写到磁盘变为HFile(StoreFile),还可以通过flush将memstore数据实例化</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束------</div>
+    
+</div>
+    
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+    
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果对您有帮助的话请我喝瓶水吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="share 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay.jpg" alt="share 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HBase/" rel="tag"><i class="fa fa-tag"></i> HBase</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/ZooKeeper/ZooKeeper-指南/" rel="next" title="ZooKeeper 指南">
+                <i class="fa fa-chevron-left"></i> ZooKeeper 指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/uncategorized/Hadoop-高可用配置/" rel="prev" title="Hadoop 高可用配置">
+                Hadoop 高可用配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/share.jpg"
+                alt="share" />
+            
+              <p class="site-author-name" itemprop="name">share</p>
+              <p class="site-description motion-element" itemprop="description">不长肉的吃货</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/share23" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-简介"><span class="nav-number">1.</span> <span class="nav-text">HBase 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HBase-和-Hive-的区别"><span class="nav-number">1.2.</span> <span class="nav-text">HBase 和 Hive 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-安装"><span class="nav-number">2.</span> <span class="nav-text">HBase 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地安装"><span class="nav-number">2.1.</span> <span class="nav-text">本地安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全分布式安装"><span class="nav-number">2.2.</span> <span class="nav-text">完全分布式安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-数据模型"><span class="nav-number">3.</span> <span class="nav-text">HBase 数据模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-命令"><span class="nav-number">4.</span> <span class="nav-text">HBase 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HBase-与-SQL-的区别"><span class="nav-number">4.1.</span> <span class="nav-text">HBase 与 SQL 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并-HBase-中的小文件"><span class="nav-number">4.2.</span> <span class="nav-text">合并 HBase 中的小文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据的区别"><span class="nav-number">4.3.</span> <span class="nav-text">删除数据的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-开发"><span class="nav-number">5.</span> <span class="nav-text">HBase 开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HBase-API-使用"><span class="nav-number">5.1.</span> <span class="nav-text">HBase API 使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-原理"><span class="nav-number">6.</span> <span class="nav-text">HBase 原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HBase-写入过程"><span class="nav-number">6.1.</span> <span class="nav-text">HBase 写入过程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">share</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">35.1k</span>
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+  <!-- <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4 -->
+<span>   |   </sapn>
+<span id="showDays"></span></div>
+
+
+
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2018,01,18,15,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    //var diffYears = Math.floor(diff/years);
+    //var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffDays = Math.floor(diff/days);
+    //var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffHours = Math.floor((diff-diffDays*days)/hours);
+    //var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffMinutes = Math.floor((diff-diffDays*days-diffHours*hours)/minutes);
+    //var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+    var diffSeconds = Math.floor((diff-diffDays*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      //document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
     var guest = 'nick,mail,link';
     guest = guest.split(',').filter(item=>{
@@ -24,7 +965,13 @@ HBase 数据是以字节形式存储
         guest_info:guest,
         pageSize:'10' || 10,
     });
-  </script><script type="text/javascript">
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -339,7 +1286,152 @@ HBase 数据是以字节形式存储
         onPopupClose();
       }
     });
-  </script><script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script><script>AV.initialize("EikySko0KUVKHgbqC7qSCT6i-gzGzoHsz","lctQ1RRlY0NaASk6arW07ena")</script><script>function showTime(e){var t=new AV.Query(e),n=[],o=$(".leancloud_visitors");o.each(function(){n.push($(this).attr("id").trim())}),t.containedIn("url",n),t.find().done(function(e){var t=".leancloud-visitors-count";if(0!==e.length){for(var i=0;i<e.length;i++){var s=e[i],r=s.get("url"),l=s.get("time"),c=document.getElementById(r);$(c).find(t).text(l)}for(i=0;i<n.length;i++){r=n[i],c=document.getElementById(r);var u=$(c).find(t);""==u.text()&&u.text(0)}}else o.find(t).text(0)}).fail(function(e,t){console.log("Error: "+t.code+" "+t.message)})}function addCount(e){var t=$(".leancloud_visitors"),n=t.attr("id").trim(),o=t.attr("data-flag-title").trim(),i=new AV.Query(e);i.equalTo("url",n),i.find({success:function(t){if(t.length>0){var i=t[0];i.fetchWhenSave(!0),i.increment("time"),i.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to save Visitor num, with error message: "+t.message)}})}else{var s=new e,r=new AV.ACL;r.setPublicReadAccess(!0),r.setPublicWriteAccess(!0),s.setACL(r),s.set("title",o),s.set("url",n),s.set("time",1),s.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to create")}})}},error:function(e){console.log("Error:"+e.code+" "+e.message)}})}$(function(){var e=AV.Object.extend("Counter");1==$(".leancloud_visitors").length?addCount(e):$(".post-title-link").length>1&&showTime(e)})</script><div id="hexo-helper-live2d"><canvas id="live2dcanvas" width="150" height="300"></canvas></div><style>#live2dcanvas{position:fixed;width:150px;height:300px;opacity:.7;right:0;z-index:999;pointer-events:none;bottom:-20px}</style><script type="text/javascript" src="/live2d/device.min.js"></script><script type="text/javascript">
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EikySko0KUVKHgbqC7qSCT6i-gzGzoHsz", "lctQ1RRlY0NaASk6arW07ena");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
 const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
 (function(){
   if((typeof(device) != 'undefined') && (device.mobile())){
@@ -349,4 +1441,9 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
   loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/koharu.model.json", 0.5);});
 })();
-</script><script type="text/javascript" src="/js/src/dytitle.js"></script></body></html>
+</script>
+
+  <!--卖萌-->
+<script type="text/javascript" src="/js/src/dytitle.js"></script>
+</body>
+</html>
